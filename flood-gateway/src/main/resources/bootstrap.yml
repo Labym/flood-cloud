@@ -8,6 +8,8 @@ spring:
         consul:
           host: localhost
           port: 8500
+          config:
+            format: key_value
     zipkin:
       enabled: false
 
