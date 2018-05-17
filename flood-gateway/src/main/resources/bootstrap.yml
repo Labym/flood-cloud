@@ -1,0 +1,17 @@
+spring:
+    application:
+        name: flood-gateway
+    profiles:
+        active: dev,native
+    cloud:
+
+        consul:
+          host: localhost
+          port: 8500
+    zipkin:
+      enabled: false
+
+
+info:
+    project:
+        version: #project.version#
