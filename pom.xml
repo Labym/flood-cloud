@@ -10,6 +10,7 @@
     <modules>
         <module>flood-config</module>
         <module>flood-gateway</module>
+        <module>flood-common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -40,6 +41,15 @@
 
     <dependencyManagement>
         <dependencies>
+
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
 
             <dependency>
                 <groupId>io.springfox</groupId>
