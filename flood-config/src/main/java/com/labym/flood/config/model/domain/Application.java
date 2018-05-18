@@ -1,8 +1,9 @@
-package com.labym.flood.config.model.entity;
+package com.labym.flood.config.model.domain;
 
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,6 +15,7 @@ import java.time.Instant;
 public class Application {
     @Id
     private Long id;
+    @Column(name = "application_name",length = 100,nullable = false)
     private String name;
     private Instant createAt;
 }

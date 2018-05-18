@@ -11,6 +11,7 @@
         <module>flood-config</module>
         <module>flood-gateway</module>
         <module>flood-common</module>
+        <module>flood-iam</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -29,20 +30,43 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <hibernate.version>5.2.16.Final</hibernate.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <javassist.version>3.22.0-GA</javassist.version>
         <dolphin.version>1.0-SNAPSHOT</dolphin.version>
         <spring-boot.version>2.0.1.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.RC1</spring-cloud.version>
         <spring-platform.version>Cairo-SR1</spring-platform.version>
         <lombok.version>1.16.20</lombok.version>
         <swagger2.version>2.8.0</swagger2.version>
+        <mysql.version>5.1.46</mysql.version>
+        <liquibase.version>3.5.5</liquibase.version>
+        <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
 
+            <dependency>
+                <groupId>com.labym.flood</groupId>
+                <artifactId>flood-common</artifactId>
+                <version>${flood.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.liquibase.ext</groupId>
+                <artifactId>liquibase-hibernate5</artifactId>
+                <version>3.6</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
