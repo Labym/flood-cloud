@@ -24,7 +24,7 @@ import java.sql.SQLException;
 
 @Slf4j
 @Configuration
-@EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
+//@EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
 @EnableTransactionManagement
 public class DatabaseConfiguration {
 
@@ -40,12 +40,12 @@ public class DatabaseConfiguration {
      * @return the H2 database TCP server
      * @throws SQLException if the server failed to start
      */
-    @Bean(initMethod = "start", destroyMethod = "stop")
-    @ConditionalOnClass(org.h2.Driver.class)
-    @Profile(FloodConstants.SPRING_PROFILE_DEVELOPMENT)
-    public Object h2TCPServer() throws SQLException {
-        return H2ConfigurationHelper.createServer();
-    }
+//    @Bean(initMethod = "start", destroyMethod = "stop")
+//    @ConditionalOnClass(org.h2.Driver.class)
+//    @Profile(FloodConstants.SPRING_PROFILE_DEVELOPMENT)
+//    public Object h2TCPServer() throws SQLException {
+//        return H2ConfigurationHelper.createServer();
+//    }
 
     @Bean
     @ConditionalOnClass({DataSource.class, EmbeddedDatabaseType.class})
