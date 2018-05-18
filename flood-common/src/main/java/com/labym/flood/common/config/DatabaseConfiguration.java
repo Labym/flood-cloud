@@ -41,6 +41,7 @@ public class DatabaseConfiguration {
      * @throws SQLException if the server failed to start
      */
     @Bean(initMethod = "start", destroyMethod = "stop")
+    @ConditionalOnClass(org.h2.Driver.class)
     @Profile(FloodConstants.SPRING_PROFILE_DEVELOPMENT)
     public Object h2TCPServer() throws SQLException {
         return H2ConfigurationHelper.createServer();
