@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="esvwwxn (generated)" id="1526609947056-1">
+        <createTable tableName="config_application">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_at" type="BINARY(255)"/>
+            <column name="application_name" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="config_application_configuration">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="config_application_configurationPK"/>
+            </column>
+            <column name="config_key" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="config_value" type="VARCHAR(255)"/>
+            <column name="application_id" type="BIGINT"/>
+            <column name="profile_id" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="config_application_profile">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_name" type="VARCHAR(255)"/>
+            <column name="application_id" type="BIGINT"/>
+        </createTable>
+
+        <addPrimaryKey columnNames="id" constraintName="config_applicationPK" tableName="config_application"/>
+
+        <addPrimaryKey columnNames="id" constraintName="config_application_profilePK" tableName="config_application_profile"/>
+
+        <addUniqueConstraint columnNames="config_key, application_id, profile_id" constraintName="UKh2qe48yhila8a0akebbpo8p6g" tableName="config_application_configuration"/>
+
+        <createIndex indexName="IDX4aoeits3431ncmymqp5abvrm8" tableName="config_application_configuration">
+            <column name="application_id"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="profile_id" baseTableName="config_application_configuration" constraintName="FKgb7xpx4s5kyjy0ad2cojnchsq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="config_application_profile"/>
+
+        <addForeignKeyConstraint baseColumnNames="application_id" baseTableName="config_application_profile" constraintName="FKho26vyrorkjllx9xpqr2is3wp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="config_application"/>
+
+        <addForeignKeyConstraint baseColumnNames="application_id" baseTableName="config_application_configuration" constraintName="FKogtg7gc3ysawhkch01r9w9270" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="config_application"/>
+    </changeSet>
+</databaseChangeLog>
