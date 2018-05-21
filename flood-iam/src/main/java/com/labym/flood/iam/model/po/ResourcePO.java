@@ -2,12 +2,16 @@ package com.labym.flood.iam.model.po;
 
 import com.labym.flood.common.constant.ResourceType;
 import com.labym.flood.common.converter.MapJsonJpaConverter;
+import com.labym.flood.processor.annotation.DTO;
+import com.labym.flood.processor.annotation.EnableCodeGenerator;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.Map;
 
+@EnableCodeGenerator
+@DTO
 @Data
 @Entity
 @Table(name = "IAM_RESOURCE")

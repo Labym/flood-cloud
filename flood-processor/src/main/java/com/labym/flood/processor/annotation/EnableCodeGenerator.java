@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 public @interface EnableCodeGenerator {
     boolean repository() default true;
     boolean service() default  true;
-    boolean controller() default  false;
+    boolean controller() default  true;
 }
