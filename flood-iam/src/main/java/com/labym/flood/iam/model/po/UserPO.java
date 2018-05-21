@@ -1,6 +1,8 @@
 package com.labym.flood.iam.model.po;
 
 import com.labym.flood.iam.config.Constants;
+import com.labym.flood.processor.annotation.DTO;
+import com.labym.flood.processor.annotation.EnableCodeGenerator;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 
+@EnableCodeGenerator
+@DTO
 @Entity
 @Data
 @Table(name = "IAM_USER")

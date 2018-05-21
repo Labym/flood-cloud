@@ -1,48 +1,44 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="esvwwxn (generated)" id="1526609947056-1">
-        <createTable tableName="config_application">
-            <column name="id" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="create_at" type="BINARY(255)"/>
-            <column name="application_name" type="VARCHAR(255)"/>
-        </createTable>
-
-        <createTable tableName="config_application_configuration">
+    <changeSet author="esvwwxn (generated)" id="1526868236754-1">
+        <createTable tableName="iam_resource">
             <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="config_application_configurationPK"/>
+                <constraints primaryKey="true" primaryKeyName="iam_resourcePK"/>
             </column>
-            <column name="config_key" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="config_value" type="VARCHAR(255)"/>
-            <column name="application_id" type="BIGINT"/>
-            <column name="profile_id" type="BIGINT"/>
+            <column name="code" type="VARCHAR(100)"/>
+            <column name="create_at" type="${datetime}"/>
+            <column name="create_by" type="BIGINT"/>
+            <column name="extensions" type="LONGBLOB"/>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="parent_id" type="BIGINT"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="url" type="VARCHAR(1000)"/>
         </createTable>
 
-        <createTable tableName="config_application_profile">
-            <column name="id" type="BIGINT">
+        <createTable tableName="iam_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="iam_userPK"/>
+            </column>
+            <column name="activated" type="BIT">
                 <constraints nullable="false"/>
             </column>
-            <column name="profile_name" type="VARCHAR(255)"/>
-            <column name="application_id" type="BIGINT"/>
+            <column name="activation_key" type="VARCHAR(36)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(6)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)"/>
+            <column name="reset_date" type="${datetime}"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+            <column name="salt_hash" type="VARCHAR(255)"/>
         </createTable>
 
-        <addPrimaryKey columnNames="id" constraintName="config_applicationPK" tableName="config_application"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_IAM_USEREMAIL_COL" tableName="iam_user"/>
 
-        <addPrimaryKey columnNames="id" constraintName="config_application_profilePK" tableName="config_application_profile"/>
-
-        <addUniqueConstraint columnNames="config_key, application_id, profile_id" constraintName="UKh2qe48yhila8a0akebbpo8p6g" tableName="config_application_configuration"/>
-
-        <createIndex indexName="IDX4aoeits3431ncmymqp5abvrm8" tableName="config_application_configuration">
-            <column name="application_id"/>
-        </createIndex>
-
-        <addForeignKeyConstraint baseColumnNames="profile_id" baseTableName="config_application_configuration" constraintName="FKgb7xpx4s5kyjy0ad2cojnchsq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="config_application_profile"/>
-
-        <addForeignKeyConstraint baseColumnNames="application_id" baseTableName="config_application_profile" constraintName="FKho26vyrorkjllx9xpqr2is3wp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="config_application"/>
-
-        <addForeignKeyConstraint baseColumnNames="application_id" baseTableName="config_application_configuration" constraintName="FKogtg7gc3ysawhkch01r9w9270" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="config_application"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_IAM_USERLOGIN_COL" tableName="iam_user"/>
     </changeSet>
 </databaseChangeLog>

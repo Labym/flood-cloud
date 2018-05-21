@@ -12,6 +12,7 @@
         <module>flood-gateway</module>
         <module>flood-common</module>
         <module>flood-iam</module>
+        <module>flood-processor</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -42,9 +43,12 @@
         <spring-platform.version>Cairo-SR1</spring-platform.version>
         <lombok.version>1.16.20</lombok.version>
         <swagger2.version>2.8.0</swagger2.version>
+        <guava.version>22.0</guava.version>
         <mysql.version>5.1.46</mysql.version>
         <liquibase.version>3.5.5</liquibase.version>
         <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
+        <javapoet.version>1.10.0</javapoet.version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
     </properties>
 
 
@@ -54,6 +58,12 @@
             <dependency>
                 <groupId>com.labym.flood</groupId>
                 <artifactId>flood-common</artifactId>
+                <version>${flood.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.labym.flood</groupId>
+                <artifactId>flood-processor</artifactId>
                 <version>${flood.version}</version>
             </dependency>
 
@@ -73,6 +83,32 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.auto.service</groupId>
+                <artifactId>auto-service</artifactId>
+                <version>1.0-rc4</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.squareup</groupId>
+                <artifactId>javapoet</artifactId>
+                <version>${javapoet.version}</version>
+            </dependency>
+
 
 
             <dependency>
