@@ -4,8 +4,11 @@ import com.labym.flood.iam.model.dto.ResourceDTO;
 import com.labym.flood.iam.service.ResourceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/resources")
@@ -21,8 +24,10 @@ public class ResourceEndpoint {
         return ResponseEntity.ok(resourceService.findMenusTree());
     }
 
+    @PostMapping("/menus")
     public ResponseEntity createResource(ResourceDTO resourceDTO ){
-            return null;
+        resourceService.create(resourceDTO);
+        return ResponseEntity.created(URI.create("")).build();
     }
 
 

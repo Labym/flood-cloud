@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 @Mapper(
     componentModel = "spring"
 )
-@Service
 public interface UserMapper extends EntityMapper<UserDTO, UserPO> {
   UserPO toEntity(UserDTO userDTO);
 

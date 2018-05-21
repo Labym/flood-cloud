@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 @Mapper(
     componentModel = "spring"
 )
-@Service
 public interface ResourceMapper extends EntityMapper<ResourceDTO, ResourcePO> {
-  ResourcePO toEntity(ResourceDTO resourceDTO);
 
-  ResourceDTO toDto(ResourcePO resource);
+  @Override
+  ResourcePO toEntity(ResourceDTO dto);
+
+  @Override
+  ResourceDTO toDto(ResourcePO entity);
 }

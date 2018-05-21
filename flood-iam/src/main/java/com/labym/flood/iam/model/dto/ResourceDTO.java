@@ -6,8 +6,11 @@ import java.lang.Object;
 import java.lang.String;
 import java.time.Instant;
 import java.util.Map;
+import java.util.Objects;
 
 import com.labym.flood.common.util.tree.Node;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +20,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel
 public class ResourceDTO implements Node<Long> {
+
+  @ApiModelProperty(readOnly = true)
   private Long id;
 
   private String name;
@@ -30,8 +36,9 @@ public class ResourceDTO implements Node<Long> {
 
   private ResourceType type;
 
+  @ApiModelProperty(readOnly = true)
   private Instant createAt;
-
+  @ApiModelProperty(hidden = true)
   private Long createBy;
 
   private Map<String, Object> extensions;
@@ -48,6 +55,6 @@ public class ResourceDTO implements Node<Long> {
 
   @Override
   public boolean isRoot() {
-    return this.id==this.parentId;
+    return null==this.parentId|| Objects.equals(this.id,this.parentId);
   }
 }

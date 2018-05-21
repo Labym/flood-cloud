@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, FloodProperties.class})
-@ComponentScan("com.labym.flood.common")
+@ComponentScan({"com.labym.flood.common","com.labym.flood.iam"})
 public class FloodIAMApplication {
 
     public static void main(String[] args) {
