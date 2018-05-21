@@ -1,13 +1,15 @@
 package com.labym.flood.common.util.tree;
 
 import lombok.Getter;
+import org.apache.commons.compress.utils.Lists;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class Tree<T extends Node<ID>,ID extends Serializable> {
+
     @Getter
-    private TreeNode<T,ID> root;
+    private List<TreeNode<T,ID>> treeNodes= Lists.newArrayList();
 
     public Tree(){
 
@@ -18,9 +20,10 @@ public class Tree<T extends Node<ID>,ID extends Serializable> {
     }
 
     private void initRoot(T node,List<T> nodes) {
-        if (node.isRoot()) {
-            root = new TreeNode<>(null, node);
-            initChildren(root,nodes);
+        if (null==node.parentId()) {
+            TreeNode<T,ID> rootNode = new TreeNode<>(null, node);
+            treeNodes.add(rootNode);
+            initChildren(rootNode,nodes);
         }
     }
 
@@ -29,7 +32,7 @@ public class Tree<T extends Node<ID>,ID extends Serializable> {
     }
 
     private void initChild(TreeNode<T, ID> parent, List<T> nodes, T node) {
-        if(node.isRoot()){
+        if(null==node.parentId()){
             return;
         }
         if(parent.id().equals(node.parentId())){
@@ -43,12 +46,10 @@ public class Tree<T extends Node<ID>,ID extends Serializable> {
         nodes.forEach(node-> initRoot(node,nodes));
     }
 
-
     @Override
     public String toString() {
         return "Tree{" +
-                "root=" + root +
+                "treeNodes=" + treeNodes +
                 '}';
     }
-
 }

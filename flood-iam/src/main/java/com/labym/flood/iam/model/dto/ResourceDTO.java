@@ -6,6 +6,8 @@ import java.lang.Object;
 import java.lang.String;
 import java.time.Instant;
 import java.util.Map;
+
+import com.labym.flood.common.util.tree.Node;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResourceDTO {
+public class ResourceDTO implements Node<Long> {
   private Long id;
 
   private String name;
@@ -33,4 +35,19 @@ public class ResourceDTO {
   private Long createBy;
 
   private Map<String, Object> extensions;
+
+  @Override
+  public Long id() {
+    return this.id;
+  }
+
+  @Override
+  public Long parentId() {
+    return this.parentId;
+  }
+
+  @Override
+  public boolean isRoot() {
+    return this.id==this.parentId;
+  }
 }
