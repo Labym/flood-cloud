@@ -2,5 +2,6 @@ package com.labym.flood.common.exception;
 
 public interface FloodErrorConstansts {
 
-    FloodError ALREADY_EXIST=new FloodError("","");
+    String ALREADY_EXIST="already_exists";
+    String ALREADY_EXIST_DESC="object %s already exists";
 }

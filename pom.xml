@@ -109,7 +109,23 @@
                 <version>${javapoet.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-bean-validators</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>io.springfox</groupId>

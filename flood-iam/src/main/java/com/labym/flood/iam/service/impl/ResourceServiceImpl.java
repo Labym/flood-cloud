@@ -1,6 +1,7 @@
 package com.labym.flood.iam.service.impl;
 
 import com.labym.flood.common.constant.ResourceType;
+import com.labym.flood.common.exception.FloodErrorUtils;
 import com.labym.flood.common.exception.FloodException;
 import com.labym.flood.common.service.impl.BaseServiceImpl;
 import com.labym.flood.common.util.tree.Tree;
@@ -34,7 +35,9 @@ public class ResourceServiceImpl extends BaseServiceImpl<ResourcePO, ResourceDTO
     @Override
     public void create(ResourceDTO resourceDTO) {
         if (resourceRepository.findByName(resourceDTO.getName()).isPresent()) {
-            throw new FloodException();
+            throw new FloodException(FloodErrorUtils.alreadyExists("resource name already exist"));
         }
+
+
     }
 }
