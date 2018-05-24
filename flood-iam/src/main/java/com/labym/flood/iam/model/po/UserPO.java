@@ -73,4 +73,6 @@ public class UserPO {
 
     @Column(name = "salt_hash")
     private String salt;
+
+    private Long expireAt;
 }

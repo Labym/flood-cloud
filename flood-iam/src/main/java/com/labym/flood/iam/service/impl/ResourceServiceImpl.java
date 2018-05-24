@@ -1,6 +1,5 @@
 package com.labym.flood.iam.service.impl;
 
-import com.labym.flood.common.config.FloodDefaults;
 import com.labym.flood.common.constant.ResourceType;
 import com.labym.flood.common.exception.FloodErrorUtils;
 import com.labym.flood.common.exception.FloodException;
