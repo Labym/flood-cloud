@@ -1,6 +1,7 @@
 package com.labym.flood.iam.web.rest;
 
 import com.labym.flood.iam.model.vm.RegistrationVM;
+import com.labym.flood.iam.repository.UserRepository;
 import com.labym.flood.iam.service.UserService;
 import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
@@ -15,12 +16,12 @@ import javax.validation.Valid;
 @RequestMapping("/api")
 public class AccountEndPoint {
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    public AccountEndPoint(UserService userService) {
+    public AccountEndPoint(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
-    private final UserService userService;
-
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)

@@ -6,6 +6,6 @@ import lombok.Data;
 public class LoginVM {
     private String username;
     private String password;
-    private String captcha;
+    private CaptchaVM captcha;
     private boolean rememberMe;
 }

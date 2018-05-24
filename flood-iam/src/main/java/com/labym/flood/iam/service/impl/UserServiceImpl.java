@@ -20,12 +20,13 @@ import java.util.UUID;
 public class UserServiceImpl extends BaseServiceImpl<UserPO,UserDTO,Long> implements UserService {
   private final UserRepository userRepository;
   private final UserMapper userMapper;
-  private PasswordEncoder passwordEncoder;
+  private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper,PasswordEncoder passwordEncoder) {
         super(userRepository, userMapper);
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder=passwordEncoder;
     }
 
 

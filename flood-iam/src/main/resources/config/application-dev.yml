@@ -30,3 +30,11 @@ spring:
     thymeleaf:
         cache: true
 debug: true
+flood:
+  cors:
+    allowed-origins: "*"
+    allowed-methods: "*"
+    allowed-headers: "*"
+    exposed-headers: "Authorization,Link,X-Total-Count"
+    allow-credentials: true
+    max-age: 1800
