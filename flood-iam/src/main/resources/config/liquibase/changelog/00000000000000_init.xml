@@ -35,6 +35,7 @@
             <column name="reset_date" type="${datetime}"/>
             <column name="reset_key" type="VARCHAR(20)"/>
             <column name="salt_hash" type="VARCHAR(255)"/>
+            <column name="expire_at" type="BIGINT"/>
         </createTable>
 
         <addUniqueConstraint columnNames="email" constraintName="UC_IAM_USEREMAIL_COL" tableName="iam_user"/>

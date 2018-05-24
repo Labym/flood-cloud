@@ -1,4 +1,4 @@
-package com.labym.flood.iam.model.vo;
+package com.labym.flood.iam.model.vm;
 
 import lombok.Data;
 

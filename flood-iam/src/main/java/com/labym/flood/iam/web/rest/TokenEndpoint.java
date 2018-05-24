@@ -1,8 +1,8 @@
 package com.labym.flood.iam.web.rest;
 
 import com.labym.flood.iam.model.po.UserPO;
-import com.labym.flood.iam.model.vo.LoginVO;
-import com.labym.flood.iam.model.vo.TokenVO;
+import com.labym.flood.iam.model.vm.LoginVM;
+import com.labym.flood.iam.model.vm.TokenVO;
 import com.labym.flood.iam.repository.UserRepository;
 import com.labym.flood.iam.security.jwt.JWTConfigurer;
 import com.labym.flood.iam.security.jwt.TokenProvider;
@@ -41,7 +41,7 @@ public class TokenEndpoint {
 
     @PostMapping("/authenticate")
     @Timed
-    public ResponseEntity<TokenVO> authorize(@Valid @RequestBody LoginVO loginVM) throws UsernameNotFoundException {
+    public ResponseEntity<TokenVO> authorize(@Valid @RequestBody LoginVM loginVM) throws UsernameNotFoundException {
 
 
         Optional<UserPO> userOptional = userRepository.findUserByLogin(loginVM.getUsername());
@@ -56,7 +56,7 @@ public class TokenEndpoint {
 
     }
 
-    private ResponseEntity<TokenVO> authenticate(LoginVO loginVM,String salt) {
+    private ResponseEntity<TokenVO> authenticate(LoginVM loginVM, String salt) {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword()+salt);
 

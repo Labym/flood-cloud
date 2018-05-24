@@ -51,6 +51,7 @@
         <javapoet.version>1.10.0</javapoet.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <jjwt.version>0.9.0</jjwt.version>
+        <hikari-cp.version>3.1.0</hikari-cp.version>
     </properties>
 
 
@@ -72,6 +73,13 @@
                 <artifactId>flood-processor</artifactId>
                 <version>${flood.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${hikari-cp.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.liquibase.ext</groupId>

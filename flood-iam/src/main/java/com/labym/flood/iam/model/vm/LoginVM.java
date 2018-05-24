@@ -1,9 +1,9 @@
-package com.labym.flood.iam.model.vo;
+package com.labym.flood.iam.model.vm;
 
 import lombok.Data;
 
 @Data
-public class LoginVO {
+public class LoginVM {
     private String username;
     private String password;
     private String captcha;

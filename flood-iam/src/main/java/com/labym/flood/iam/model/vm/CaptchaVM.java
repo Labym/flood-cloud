@@ -1,0 +1,9 @@
+package com.labym.flood.iam.model.vm;
+
+import lombok.Data;
+
+@Data
+public class CaptchaVM {
+    private String id;
+    private String value;
+}
