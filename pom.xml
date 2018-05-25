@@ -13,7 +13,6 @@
         <module>flood-common</module>
         <module>flood-iam</module>
         <module>flood-processor</module>
-        <module>flood-interfaces</module>
     </modules>
     <packaging>pom</packaging>
 
