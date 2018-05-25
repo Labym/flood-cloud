@@ -8,7 +8,7 @@ public class UserUtils {
         if (null == expireAt || expireAt.equals(NEVER_EXPIRED)) {
             return true;
         }
-
         return System.currentTimeMillis()<expireAt;
     }
+
 }

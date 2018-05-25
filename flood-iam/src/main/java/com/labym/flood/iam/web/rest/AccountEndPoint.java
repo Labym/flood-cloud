@@ -6,10 +6,13 @@ import com.labym.flood.iam.service.UserService;
 import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.net.URI;
 
 @Slf4j
 @RestController
@@ -24,9 +27,12 @@ public class AccountEndPoint {
     }
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void registerAccount(@Valid @RequestBody RegistrationVM vm) {
+    public  ResponseEntity registerAccount(@Valid @RequestBody RegistrationVM vm) {
+        if (StringUtils.isEmpty(vm.getEmail())) {
+            return ResponseEntity.badRequest().build();
+        }
         userService.register(vm.getEmail(),vm.getPassword());
+        return ResponseEntity.created(URI.create("")).build();
     }
 
     @GetMapping("/activate")
