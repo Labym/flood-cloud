@@ -47,4 +47,6 @@ public class ResourceServiceImpl extends BaseServiceImpl<ResourcePO, ResourceDTO
         resourceRepository.save(resourcePO);
         log.info("created resource {}",resourcePO);
     }
+
+
 }

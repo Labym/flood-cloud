@@ -13,4 +13,6 @@ public interface UserService extends BaseService<UserPO,UserDTO,Long> {
     boolean loginNameExist(String login);
 
     Optional<UserDTO> findByLogin(String name);
+
+    Optional<UserPO> activateRegistration(String key);
 }

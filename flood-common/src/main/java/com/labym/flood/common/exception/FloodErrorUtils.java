@@ -15,5 +15,9 @@ public final class FloodErrorUtils {
         return new FloodError(HttpStatus.BAD_REQUEST, FloodErrorConstansts.ALREADY_EXIST, String.format(errorDescription, params));
     }
 
+    public static final FloodError notExists(String errorDescription, Object... params) {
+        return new FloodError(HttpStatus.BAD_REQUEST, FloodErrorConstansts.NOT_EXIST, String.format(errorDescription, params));
+    }
+
 
 }

@@ -1,11 +1,15 @@
 package com.labym.flood.iam.web.rest;
 
+import com.labym.flood.common.exception.FloodErrorUtils;
+import com.labym.flood.common.exception.FloodException;
+import com.labym.flood.iam.config.Constants;
+import com.labym.flood.iam.model.dto.UserDTO;
 import com.labym.flood.iam.model.vm.RegistrationVM;
 import com.labym.flood.iam.repository.UserRepository;
 import com.labym.flood.iam.service.UserService;
+import com.labym.flood.iam.util.UserUtils;
 import io.micrometer.core.annotation.Timed;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -31,14 +35,21 @@ public class AccountEndPoint {
         if (StringUtils.isEmpty(vm.getEmail())) {
             return ResponseEntity.badRequest().build();
         }
-        userService.register(vm.getEmail(),vm.getPassword());
-        return ResponseEntity.created(URI.create("")).build();
+
+        if (!UserUtils.checkPassword(vm.getPassword())) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        UserDTO userDTO = userService.register(vm.getEmail(), vm.getPassword());
+        return ResponseEntity.created(URI.create(Constants.Api.USER_API+"/"+userDTO.getId())).build();
     }
 
     @GetMapping("/activate")
     @Timed
     public void activateAccount(@RequestParam(value = "key") String key) {
-
+        if (!userService.activateRegistration(key).isPresent()) {
+            throw new FloodException(FloodErrorUtils.notExists("not found activationKey(%s)",key));
+        }
     }
 
     @GetMapping("/authenticate")

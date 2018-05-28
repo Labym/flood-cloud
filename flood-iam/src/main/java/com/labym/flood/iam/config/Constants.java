@@ -16,4 +16,8 @@ public interface Constants {
         String ICON="icon";
     }
 
+    interface Api{
+        String USER_API="/api/users";
+    }
+
 }
