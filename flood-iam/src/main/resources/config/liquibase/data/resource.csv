@@ -1,0 +1,5 @@
+id,code,create_at,create_by,extensions,name,parent_id,type,url
+1,app.setting,2018-05-03 16:53:35,0,null,SETTING,1,MENU,/settings
+2,app.setting.resource,2018-05-03 16:53:52,0,null,setting.resource,2,MENU,/settings/resources
+3,app.setting.organization,2018-05-03 16:54:31,0,null,setting.organization,2,MENU,/settings/organizations
+4,app.setting.role,2018-05-03 16:55:29,0,null,setting.role,2,MENU,/settings/roles

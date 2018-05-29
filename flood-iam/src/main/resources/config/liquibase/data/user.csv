@@ -1,0 +1,2 @@
+id,activated,activation_key,email,first_name,image_url,lang_key,last_name,login,password_hash,reset_date,reset_key,salt_hash,expire_at
+1,1,,zhangjingl02@gmail.com,,,zh-cn,,zhangjingl02@gmail.com,$2a$10$UqG7cF8C7fP/Du4epVk4Ru1FWbRDjyx62E0MYLmh.GL/vfRovbFbi,null,null,ba8e97c1-62ae-4c21-80a7-bb29fd51501d,-1

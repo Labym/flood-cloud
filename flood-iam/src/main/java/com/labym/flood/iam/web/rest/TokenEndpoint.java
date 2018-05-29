@@ -44,7 +44,7 @@ public class TokenEndpoint {
     public ResponseEntity<TokenVO> authorize(@Valid @RequestBody LoginVM loginVM) throws UsernameNotFoundException {
 
 
-        Optional<UserPO> userOptional = userRepository.findUserByLogin(loginVM.getUsername());
+        Optional<UserPO> userOptional = userRepository.findOneUserByLogin(loginVM.getUsername());
         return userOptional.map(user ->
                 authenticate(loginVM,user.getSalt())
         ).orElseThrow(()->new UsernameNotFoundException("can't find User by login("+loginVM.getUsername()+")"));

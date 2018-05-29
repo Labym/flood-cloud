@@ -10,4 +10,6 @@ public class TokenVO {
     }
 
     private String token;
+
+    private String type="Bearer";
 }

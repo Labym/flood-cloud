@@ -13,12 +13,14 @@ import com.labym.flood.iam.util.UserUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
 @Service
+@Transactional
 public class UserServiceImpl extends BaseServiceImpl<UserPO, UserDTO, Long> implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;

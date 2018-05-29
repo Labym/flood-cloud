@@ -23,7 +23,7 @@ public class IAMUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository
-                .findUserByLogin(username)
+                .findOneUserByLogin(username)
                 .map(this::toUserDetails)
                 .orElseThrow(()->new UsernameNotFoundException("can't find user by username("+username+")"));
     }
@@ -40,6 +40,7 @@ public class IAMUserDetailsService implements UserDetailsService {
                 .username(userPO.getLogin())
                 .password(userPO.getPassword())
                 .accountNonExpired(UserUtils.accountNonExpired(userPO.getExpireAt()))
+                .accountNonLocked(true)
                 .credentialsNonExpired(true)
                 .enabled(userPO.getActivated())
                 .authorities(Lists.newArrayList(authority))

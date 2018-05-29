@@ -31,6 +31,10 @@ spring:
         cache: true
 debug: true
 flood:
+  security:
+    authentication:
+      jwt:
+        secret: 12312313
   cors:
     allowed-origins: "*"
     allowed-methods: "*"
