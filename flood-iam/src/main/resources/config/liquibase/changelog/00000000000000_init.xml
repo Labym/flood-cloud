@@ -5,6 +5,7 @@
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="iam_resourcePK"/>
             </column>
+
             <column name="code" type="VARCHAR(100)"/>
             <column name="create_at" type="${datetime}"/>
             <column name="create_by" type="BIGINT"/>
@@ -13,6 +14,7 @@
             <column name="parent_id" type="BIGINT"/>
             <column name="type" type="VARCHAR(255)"/>
             <column name="url" type="VARCHAR(1000)"/>
+            <column name="sort" type="DOUBLE"/>
         </createTable>
 
         <createTable tableName="iam_user">

@@ -26,12 +26,13 @@ public class ResourcePO {
     @Column(length = 100)
     private String code;
     private Long parentId;
+    private Double sort;
     @Enumerated(EnumType.STRING)
     private ResourceType type;
     private Instant createAt;
     private Long createBy;
 
     @Lob
-    @Convert(converter = MapJsonJpaConverter.class)
+    //@Convert(converter = MapJsonJpaConverter.class)
     private Map<String, Object> extensions;
 }

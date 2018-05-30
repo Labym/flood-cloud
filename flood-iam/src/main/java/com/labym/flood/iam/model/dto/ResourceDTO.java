@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.labym.flood.common.util.tree.Node;
+import com.labym.flood.iam.config.Constants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -55,6 +56,6 @@ public class ResourceDTO implements Node<Long> {
 
   @Override
   public boolean isRoot() {
-    return null==this.parentId|| Objects.equals(this.id,this.parentId);
+    return null==this.parentId|| Objects.equals(Constants.ROOT_RESOURCE_ID,this.parentId);
   }
 }

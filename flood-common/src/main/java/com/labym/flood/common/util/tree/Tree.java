@@ -1,5 +1,6 @@
 package com.labym.flood.common.util.tree;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class Tree<T extends Node<ID>,ID extends Serializable> {
 
     @Getter
+    @JsonProperty("root")
     private List<TreeNode<T,ID>> treeNodes= Lists.newArrayList();
 
     public Tree(){
@@ -21,7 +23,7 @@ public class Tree<T extends Node<ID>,ID extends Serializable> {
     }
 
     private void initRoot(T node,List<T> nodes) {
-        if (null==node.parentId()) {
+        if (node.isRoot()) {
             TreeNode<T,ID> rootNode = new TreeNode<>(null, node);
             treeNodes.add(rootNode);
             initChildren(rootNode,nodes);
@@ -33,7 +35,7 @@ public class Tree<T extends Node<ID>,ID extends Serializable> {
     }
 
     private void initChild(TreeNode<T, ID> parent, List<T> nodes, T node) {
-        if(null==node.parentId()){
+        if(node.isRoot()){
             return;
         }
         if(parent.id().equals(node.parentId())){
