@@ -7,8 +7,8 @@ import com.labym.flood.iam.model.po.ResourcePO;
 
 public interface ResourceService extends BaseService<ResourcePO,ResourceDTO,Long> {
 
-        Tree<ResourceDTO,Long> findMenusTree();
-
+    Tree<ResourceDTO,Long> findMenusTree();
     void create(ResourceDTO resourceDTO);
+    void update(ResourceDTO resourceDTO);
 
 }

@@ -30,5 +30,12 @@ public class ResourceEndpoint {
         return ResponseEntity.created(URI.create("")).build();
     }
 
+    @ApiImplicitParam(name = "Authorization", required = true, dataType = "string", paramType = "header")
+    @PostMapping("/menus")
+    public ResponseEntity updateResource(@RequestBody ResourceDTO resourceDTO ){
+        resourceService.create(resourceDTO);
+        return ResponseEntity.created(URI.create("")).build();
+    }
+
 
 }

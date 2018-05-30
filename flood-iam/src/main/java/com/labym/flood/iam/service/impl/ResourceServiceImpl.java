@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -44,8 +45,27 @@ public class ResourceServiceImpl extends BaseServiceImpl<ResourcePO, ResourceDTO
         ResourcePO resourcePO = resourceMapper.toEntity(resourceDTO);
         resourcePO.setCreateAt(Instant.now());
         resourcePO.setCreateBy(SecurityUtil.currentUser());
+//        if(null==resourcePO.getSort()){
+//            resourcePO.setSort(System.currentTimeMillis());
+//        }
         resourceRepository.save(resourcePO);
         log.info("created resource {}",resourcePO);
+    }
+
+    @Override
+    public void update(ResourceDTO resourceDTO) {
+        Optional<ResourcePO> resourceOptional = resourceRepository.findById(resourceDTO.getId());
+        if (resourceOptional.isPresent()) {
+            throw new FloodException(FloodErrorUtils.alreadyExists("resource name already exist"));
+        }
+        resourceOptional.ifPresent((resourcePO -> {
+            resourcePO.setCode(resourceDTO.getCode());
+            resourcePO.setName(resourceDTO.getName());
+            resourcePO.setUrl(resourceDTO.getUrl());
+            resourcePO.setParentId(resourceDTO.getParentId());
+            resourcePO.setExtensions(resourceDTO.getExtensions());
+        }));
+
     }
 
 
