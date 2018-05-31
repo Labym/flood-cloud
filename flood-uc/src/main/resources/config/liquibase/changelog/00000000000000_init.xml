@@ -1,0 +1,53 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="esvwwxn (generated)" id="1526868236754-1">
+        <createTable tableName="iam_resource">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="iam_resourcePK"/>
+            </column>
+
+            <column name="code" type="VARCHAR(100)"/>
+            <column name="create_at" type="${datetime}"/>
+            <column name="create_by" type="BIGINT"/>
+            <column name="extensions" type="LONGBLOB"/>
+            <column name="name" type="VARCHAR(100)"/>
+            <column name="parent_id" type="BIGINT"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="url" type="VARCHAR(1000)"/>
+            <column name="sort" type="DOUBLE"/>
+        </createTable>
+
+        <createTable tableName="iam_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="iam_userPK"/>
+            </column>
+            <column name="activated" type="${boolean}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(36)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(6)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)"/>
+            <column name="reset_date" type="${datetime}"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+            <column name="salt_hash" type="VARCHAR(255)"/>
+            <column name="expire_at" type="BIGINT"/>
+        </createTable>
+
+        <addUniqueConstraint columnNames="email" constraintName="UC_IAM_USEREMAIL_COL" tableName="iam_user"/>
+
+        <addUniqueConstraint columnNames="login" constraintName="UC_IAM_USERLOGIN_COL" tableName="iam_user"/>
+
+        <loadData file="config/liquibase/data/user.csv"
+                  tableName="iam_user"/>
+
+        <loadData file="config/liquibase/data/resource.csv"
+                  tableName="iam_resource"/>
+    </changeSet>
+</databaseChangeLog>
