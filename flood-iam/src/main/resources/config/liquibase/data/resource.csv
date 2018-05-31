@@ -1,6 +1,0 @@
-id,code,create_at,create_by,extensions,name,parent_id,type,url,sort
-1,app.setting,2018-05-03 16:53:35,0,null,SETTING,0,MENU,/settings,1
-2,app.setting.resource,2018-05-03 16:53:52,0,null,setting.resource,1,MENU,/settings/resources,2
-3,app.setting.organization,2018-05-03 16:54:31,0,null,setting.organization,1,MENU,/settings/organizations,3
-4,app.setting.role,2018-05-03 16:55:29,0,null,setting.role,1,MENU,/settings/roles,4
-5,app.user,2018-05-03 16:55:29,0,null,user,0,MENU,/users,5

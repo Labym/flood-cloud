@@ -11,7 +11,7 @@
         <module>flood-config</module>
         <module>flood-gateway</module>
         <module>flood-common</module>
-        <module>flood-iam</module>
+        <module>flood-uc</module>
         <module>flood-processor</module>
     </modules>
     <packaging>pom</packaging>
