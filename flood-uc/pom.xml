@@ -172,7 +172,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.labym.flood.config.FloodConfigApplication</mainClass>
+                    <mainClass>com.labym.flood.uc.UCApplication</mainClass>
                     <finalName>${project.name}</finalName>
                 </configuration>
             </plugin>

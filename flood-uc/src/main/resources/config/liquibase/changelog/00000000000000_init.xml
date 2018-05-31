@@ -1,9 +1,9 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="esvwwxn (generated)" id="1526868236754-1">
-        <createTable tableName="iam_resource">
+    <changeSet author="admin" id="1526868236754-1">
+        <createTable tableName="uc_resource">
             <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="iam_resourcePK"/>
+                <constraints primaryKey="true" primaryKeyName="uc_resourcePK"/>
             </column>
 
             <column name="code" type="VARCHAR(100)"/>
@@ -17,9 +17,9 @@
             <column name="sort" type="DOUBLE"/>
         </createTable>
 
-        <createTable tableName="iam_user">
+        <createTable tableName="uc_user">
             <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="iam_userPK"/>
+                <constraints primaryKey="true" primaryKeyName="uc_userPK"/>
             </column>
             <column name="activated" type="${boolean}">
                 <constraints nullable="false"/>
@@ -40,14 +40,14 @@
             <column name="expire_at" type="BIGINT"/>
         </createTable>
 
-        <addUniqueConstraint columnNames="email" constraintName="UC_IAM_USEREMAIL_COL" tableName="iam_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_UC_USEREMAIL_COL" tableName="uc_user"/>
 
-        <addUniqueConstraint columnNames="login" constraintName="UC_IAM_USERLOGIN_COL" tableName="iam_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_UC_USERLOGIN_COL" tableName="uc_user"/>
 
         <loadData file="config/liquibase/data/user.csv"
-                  tableName="iam_user"/>
+                  tableName="uc_user"/>
 
         <loadData file="config/liquibase/data/resource.csv"
-                  tableName="iam_resource"/>
+                  tableName="uc_resource"/>
     </changeSet>
 </databaseChangeLog>

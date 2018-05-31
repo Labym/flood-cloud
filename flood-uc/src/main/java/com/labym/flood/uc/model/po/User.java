@@ -16,8 +16,8 @@ import java.time.Instant;
 @DTO
 @Entity
 @Data
-@Table(name = "IAM_USER")
-public class UserPO {
+@Table(name = "UC_USER")
+public class User {
     private static final long serialVersionUID = 1L;
 
     @Id

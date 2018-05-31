@@ -7,7 +7,7 @@ import com.labym.flood.common.security.SecurityUtil;
 import com.labym.flood.common.service.impl.BaseServiceImpl;
 import com.labym.flood.common.util.tree.Tree;
 import com.labym.flood.uc.model.dto.ResourceDTO;
-import com.labym.flood.uc.model.po.ResourcePO;
+import com.labym.flood.uc.model.po.Resource;
 import com.labym.flood.uc.repository.ResourceRepository;
 import com.labym.flood.uc.service.ResourceService;
 import com.labym.flood.uc.service.mapper.ResourceMapper;
@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class ResourceServiceImpl extends BaseServiceImpl<ResourcePO, ResourceDTO, Long> implements ResourceService {
+public class ResourceServiceImpl extends BaseServiceImpl<Resource, ResourceDTO, Long> implements ResourceService {
     private final ResourceRepository resourceRepository;
     private final ResourceMapper resourceMapper;
 
@@ -32,7 +32,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<ResourcePO, ResourceDTO
 
     @Override
     public Tree<ResourceDTO, Long> findMenusTree() {
-        List<ResourcePO> resources = resourceRepository.findByType(ResourceType.MENU);
+        List<Resource> resources = resourceRepository.findByType(ResourceType.MENU);
         List<ResourceDTO> menus = resourceMapper.toDto(resources);
         return new Tree<>(menus);
     }
@@ -42,7 +42,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<ResourcePO, ResourceDTO
         if (resourceRepository.findByName(resourceDTO.getName()).isPresent()) {
             throw new FloodException(FloodErrorUtils.alreadyExists("resource name already exist"));
         }
-        ResourcePO resourcePO = resourceMapper.toEntity(resourceDTO);
+        Resource resourcePO = resourceMapper.toEntity(resourceDTO);
         resourcePO.setCreateAt(Instant.now());
         resourcePO.setCreateBy(SecurityUtil.currentUser());
 //        if(null==resourcePO.getSort()){
@@ -54,7 +54,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<ResourcePO, ResourceDTO
 
     @Override
     public void update(ResourceDTO resourceDTO) {
-        Optional<ResourcePO> resourceOptional = resourceRepository.findById(resourceDTO.getId());
+        Optional<Resource> resourceOptional = resourceRepository.findById(resourceDTO.getId());
         if (resourceOptional.isPresent()) {
             throw new FloodException(FloodErrorUtils.alreadyExists("resource name already exist"));
         }

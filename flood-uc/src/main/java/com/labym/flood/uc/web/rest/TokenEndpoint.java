@@ -1,6 +1,6 @@
 package com.labym.flood.uc.web.rest;
 
-import com.labym.flood.uc.model.po.UserPO;
+import com.labym.flood.uc.model.po.User;
 import com.labym.flood.uc.model.vm.LoginVM;
 import com.labym.flood.uc.model.vm.TokenVO;
 import com.labym.flood.uc.repository.UserRepository;
@@ -44,7 +44,7 @@ public class TokenEndpoint {
     public ResponseEntity<TokenVO> authorize(@Valid @RequestBody LoginVM loginVM) throws UsernameNotFoundException {
 
 
-        Optional<UserPO> userOptional = userRepository.findOneUserByLogin(loginVM.getUsername());
+        Optional<User> userOptional = userRepository.findOneUserByLogin(loginVM.getUsername());
         return userOptional.map(user ->
                 authenticate(loginVM,user.getSalt())
         ).orElseThrow(()->new UsernameNotFoundException("can't find User by login("+loginVM.getUsername()+")"));

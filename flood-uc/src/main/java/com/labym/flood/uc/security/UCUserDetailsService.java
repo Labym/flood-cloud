@@ -2,7 +2,7 @@ package com.labym.flood.uc.security;
 
 import com.google.common.collect.Lists;
 import com.labym.flood.uc.model.dto.IAMUserDetails;
-import com.labym.flood.uc.model.po.UserPO;
+import com.labym.flood.uc.model.po.User;
 import com.labym.flood.uc.repository.UserRepository;
 import com.labym.flood.uc.util.UserUtils;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,11 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service("userDetailsService")
-public class IAMUserDetailsService implements UserDetailsService {
+public class UCUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public IAMUserDetailsService(UserRepository userRepository) {
+    public UCUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -28,7 +28,7 @@ public class IAMUserDetailsService implements UserDetailsService {
                 .orElseThrow(()->new UsernameNotFoundException("can't find user by username("+username+")"));
     }
 
-    private IAMUserDetails toUserDetails(UserPO userPO){
+    private IAMUserDetails toUserDetails(User userPO){
         GrantedAuthority authority=new GrantedAuthority(){
             @Override
             public String getAuthority() {

@@ -14,8 +14,8 @@ import java.util.Map;
 @DTO
 @Data
 @Entity
-@Table(name = "IAM_RESOURCE")
-public class ResourcePO {
+@Table(name = "UC_RESOURCE")
+public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,6 +33,6 @@ public class ResourcePO {
     private Long createBy;
 
     @Lob
-    //@Convert(converter = MapJsonJpaConverter.class)
+    @Convert(converter = MapJsonJpaConverter.class)
     private Map<String, Object> extensions;
 }

@@ -1,13 +1,13 @@
 package com.labym.flood.uc.repository;
 
-import com.labym.flood.uc.model.po.UserPO;
+import com.labym.flood.uc.model.po.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<UserPO, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<UserPO> findOneUserByLogin(String  login);
+    Optional<User> findOneUserByLogin(String  login);
 
-    Optional<UserPO> findOneByActivationKey(String key);
+    Optional<User> findOneByActivationKey(String key);
 }

@@ -11,10 +11,10 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, FloodProperties.class})
-@ComponentScan({"com.labym.flood.common","com.labym.flood.iam"})
-public class FloodIAMApplication {
+@ComponentScan({"com.labym.flood.common","com.labym.flood.uc"})
+public class UCApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FloodIAMApplication.class, args);
+        SpringApplication.run(UCApplication.class, args);
     }
 }

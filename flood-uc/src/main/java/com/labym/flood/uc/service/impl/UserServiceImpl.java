@@ -5,7 +5,7 @@ import com.labym.flood.common.exception.FloodErrorUtils;
 import com.labym.flood.common.service.impl.BaseServiceImpl;
 import com.labym.flood.uc.exception.UserAlreadyExistException;
 import com.labym.flood.uc.model.dto.UserDTO;
-import com.labym.flood.uc.model.po.UserPO;
+import com.labym.flood.uc.model.po.User;
 import com.labym.flood.uc.repository.UserRepository;
 import com.labym.flood.uc.service.UserService;
 import com.labym.flood.uc.service.mapper.UserMapper;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @Transactional
-public class UserServiceImpl extends BaseServiceImpl<UserPO, UserDTO, Long> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User, UserDTO, Long> implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
@@ -39,7 +39,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserPO, UserDTO, Long> impl
         if (loginNameExist(email)) {
             throw new UserAlreadyExistException(FloodErrorUtils.alreadyExists("email(%s) already exist", email));
         }
-        UserPO user = new UserPO();
+        User user = new User();
         user.setLogin(email);
         user.setEmail(email);
         user.setSalt(UUID.randomUUID().toString());
@@ -64,7 +64,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserPO, UserDTO, Long> impl
     }
 
     @Override
-    public Optional<UserPO> activateRegistration(String key) {
+    public Optional<User> activateRegistration(String key) {
 
         return userRepository.findOneByActivationKey(key).map(user -> {
             // activate given user for the registration key.
